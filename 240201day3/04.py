@@ -16,3 +16,15 @@ N, K = map(int, input().split())
 # 배열 A와 B 입력받기
 A = list(map(int, input().split()))
 B = list(map(int, input().split()))
+
+for _ in range(K):
+    # A에서 가장 작은 값의 인덱스 찾기
+    minA_index = A.index(min(A))
+    # B에서 가장 큰 값의 인덱스 찾기
+    maxB_index = B.index(max(B))
+    # swap
+    A[minA_index], B[maxB_index] = B[maxB_index], A[minA_index]
+
+# A의 합
+result = sum(A)
+print(result)

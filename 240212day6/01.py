@@ -21,14 +21,15 @@ for _ in range(n):
  
 answer = 0 
 def dfs(x,y):
-    if x<=-1 or x>=n or y<0 or y>=m: # 만약 범위를 벗어난다면 종료
+    if x<0 or x>=n or y<0 or y>=m: # 만약 범위를 벗어난다면 종료, 가지 않음
         return False
     
-    if graph[x][y]==0:  # 현재 노드가 방문하지 않은 곳이면
+    if graph[x][y] == 0:  # 현재 노드가 방문하지 않은 곳이면
         graph[x][y] = 1  # 해당 노드에 방문한 표시
         for i in range(4):
             dfs(x+dx[i],y+dy[i])
         return True
+    return False  # 범위 안인데 이미 방문한 곳이라면? 의 조건을 주어야 함
 
 # 상 하 좌 우
 dx = [-1, 0, 1, 0]
@@ -36,7 +37,7 @@ dy = [0, 1, 0, -1]
 
 for i in range(n):
     for j in range(m):
-        if dfs(i,j)==True:
-            answer+=1
+        if dfs(i,j)==True:  # dfs가 1번 끝나면
+            answer+=1  # answer에 1 추가, 연결된 0들은 모든 숫자가 바뀌었는지
  
 print(answer)
